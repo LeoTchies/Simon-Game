@@ -49,6 +49,7 @@ function animarBotao (corAtual){
 function conferirResposta (levelAtual){
   if (padraoDeJogo[levelAtual] === padraoBotoesClicados[levelAtual]){
     console.log("Sucesso");
+   
     if(padraoDeJogo.length === padraoBotoesClicados.length){
         setTimeout(function(){
           proximaSequencia();
@@ -56,5 +57,18 @@ function conferirResposta (levelAtual){
       }
     }
 
-   else {console.log("Erroooooooou")}
-  }
+   else {console.log("Erroooooooou");
+         tocarMusica("wrong");
+        $("body").addClass("game-over");
+        setTimeout(function(){
+          $("body").removeClass("game-over");}, 200)
+        
+        $("#level-title").text("Fim de Jogo. Quer tentar outra vez?")
+        reset();};
+   }
+
+function reset(){
+  padraoDeJogo = [];
+  inicio = false;
+  level = 0;
+}
